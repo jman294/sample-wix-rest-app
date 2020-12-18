@@ -48,7 +48,8 @@ app.post('/webhook-callback', (req, res) => {
   console.log('got webhook event from Wix!', req.body);
   console.log("===========================");
   const data = jwt.verify(req.body, PUBLIC_KEY);
-  const parsedData =  JSON.parse(data.data);
+  //const parsedData =  JSON.parse(data.data);
+  const parsedData = data.data
   const prettyData = {...data, data: {...parsedData, data: JSON.parse(parsedData.data)}};
   console.log('webhook event data after verification:', prettyData);
   incomingWebhooks.push({body: prettyData, headers: req.headers});
